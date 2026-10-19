@@ -1,0 +1,13 @@
+# Minimal Supabase CLI config; anything not listed uses the CLI defaults.
+project_id = "diet-evidence-app"
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+
+[auth]
+# The prototype signs testers in anonymously so they can start without an account.
+enable_anonymous_sign_ins = true
+
+[edge_runtime]
+policy = "per_worker"

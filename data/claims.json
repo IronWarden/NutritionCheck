@@ -1,0 +1,646 @@
+{
+  "_note": "DRAFT starter library for the prototype. Every claim has review_status 'draft' and must be checked and signed off by a registered dietitian or nutrition scientist before real users see it. Source links are PubMed searches for the cited paper, not verified identifiers.",
+  "claims": [
+    {
+      "id": "fiber-chronic-disease",
+      "category": "nutrient",
+      "title": "Higher fibre intake lowers the risk of heart disease, type 2 diabetes and bowel cancer",
+      "exposure": "Dietary fibre",
+      "outcome": "Heart disease, stroke, type 2 diabetes, bowel cancer and early death",
+      "population": "Healthy adults",
+      "direction": "decreases",
+      "effect": "Eating 25-29 g a day was linked to 15-30% lower risk of early death and several chronic diseases compared with the lowest intakes, with further benefit above 30 g.",
+      "confidence": "moderate",
+      "confidence_reasons": "Large, consistent body of cohort studies with a dose-response relationship, supported by trials showing improvements in weight, blood pressure and cholesterol.",
+      "summary": "People who eat more fibre from whole grains, vegetables, fruit and legumes have less heart disease, type 2 diabetes and bowel cancer. Most people eat well under the 25-30 g a day linked to the biggest benefit.",
+      "triggers": [
+        { "signal": "fiber_g_per_day", "op": "<", "value": 20, "stance": "gap" },
+        { "signal": "fiber_g_per_day", "op": ">=", "value": 25, "stance": "strength" }
+      ],
+      "sources": [
+        { "citation": "Reynolds A et al. Carbohydrate quality and human health: a series of systematic reviews and meta-analyses. Lancet, 2019", "design": "Meta-analysis of cohorts and trials", "tier": 1, "query": "Reynolds carbohydrate quality and human health systematic reviews meta-analyses Lancet 2019" }
+      ]
+    },
+    {
+      "id": "processed-meat-colorectal",
+      "category": "food",
+      "title": "Processed meat raises the risk of bowel cancer",
+      "exposure": "Processed meat (bacon, ham, sausages, salami, hot dogs)",
+      "outcome": "Colorectal cancer",
+      "population": "Adults",
+      "direction": "increases",
+      "effect": "Each 50 g a day (about two slices of ham) is linked to roughly 18% higher bowel cancer risk.",
+      "confidence": "high",
+      "confidence_reasons": "Classified as a cause of cancer (Group 1) by the WHO's International Agency for Research on Cancer, based on consistent evidence from many large studies.",
+      "summary": "Processed meat is classed as a cause of bowel cancer. The risk rises with the amount eaten, so less is better and there is no amount known to be beneficial.",
+      "triggers": [
+        { "signal": "processed_meat_servings_per_week", "op": ">=", "value": 3, "stance": "gap" },
+        { "signal": "processed_meat_servings_per_week", "op": "<", "value": 1, "stance": "strength" }
+      ],
+      "sources": [
+        { "citation": "Bouvard V et al. Carcinogenicity of consumption of red and processed meat. Lancet Oncology, 2015 (IARC Monograph Working Group)", "design": "Expert evaluation of the full evidence base", "tier": 1, "query": "Bouvard carcinogenicity of consumption of red and processed meat Lancet Oncol 2015" }
+      ]
+    },
+    {
+      "id": "red-meat-colorectal",
+      "category": "food",
+      "title": "High red meat intake probably raises the risk of bowel cancer",
+      "exposure": "Unprocessed red meat (beef, pork, lamb)",
+      "outcome": "Colorectal cancer",
+      "population": "Adults",
+      "direction": "increases",
+      "effect": "Risk appears to rise with intake; cancer research bodies advise keeping red meat to about 350-500 g cooked weight a week.",
+      "confidence": "low",
+      "confidence_reasons": "Classed as 'probably carcinogenic' (Group 2A). The association is smaller and less certain than for processed meat, and some reviews rate the certainty as low.",
+      "summary": "Moderate amounts of red meat are a good source of protein, iron and B12, but eating a lot is probably linked to higher bowel cancer risk. The evidence is weaker than for processed meat.",
+      "triggers": [
+        { "signal": "red_meat_servings_per_week", "op": ">", "value": 5, "stance": "gap" }
+      ],
+      "sources": [
+        { "citation": "Bouvard V et al. Carcinogenicity of consumption of red and processed meat. Lancet Oncology, 2015", "design": "Expert evaluation of the full evidence base", "tier": 1, "query": "Bouvard carcinogenicity of consumption of red and processed meat Lancet Oncol 2015" },
+        { "citation": "Zeraatkar D et al. Red and processed meat consumption and risk for all-cause mortality and cardiometabolic outcomes. Annals of Internal Medicine, 2019", "design": "Meta-analysis of cohort studies", "tier": 3, "query": "Zeraatkar red and processed meat consumption all-cause mortality cardiometabolic outcomes Ann Intern Med 2019" }
+      ]
+    },
+    {
+      "id": "sugary-drinks-diabetes",
+      "category": "food",
+      "title": "Sugary drinks raise the risk of type 2 diabetes and weight gain",
+      "exposure": "Sugar-sweetened beverages (soda, sweetened juice drinks, energy drinks)",
+      "outcome": "Type 2 diabetes and weight gain",
+      "population": "Adults",
+      "direction": "increases",
+      "effect": "Each daily serving was linked to about 18% higher risk of type 2 diabetes, independent of body weight.",
+      "confidence": "moderate",
+      "confidence_reasons": "Consistent cohort evidence with a dose-response relationship, supported by trials in which replacing sugary drinks reduced weight gain.",
+      "summary": "Sugary drinks add sugar without making you feel full. Regular intake is consistently linked to type 2 diabetes and weight gain. Water, sparkling water, tea and coffee are easy swaps.",
+      "triggers": [
+        { "signal": "sugary_drink_servings_per_week", "op": ">=", "value": 3, "stance": "gap" },
+        { "signal": "sugary_drink_servings_per_week", "op": "<", "value": 1, "stance": "strength" }
+      ],
+      "sources": [
+        { "citation": "Imamura F et al. Consumption of sugar sweetened beverages, artificially sweetened beverages, and fruit juice and incidence of type 2 diabetes. BMJ, 2015", "design": "Meta-analysis of cohort studies", "tier": 3, "query": "Imamura consumption of sugar sweetened beverages incidence of type 2 diabetes BMJ 2015" },
+        { "citation": "Malik VS et al. Sugar-sweetened beverages and weight gain in children and adults: a systematic review and meta-analysis. Am J Clin Nutr, 2013", "design": "Meta-analysis of trials and cohorts", "tier": 1, "query": "Malik sugar-sweetened beverages and weight gain children adults meta-analysis 2013" }
+      ]
+    },
+    {
+      "id": "fruit-veg-mortality",
+      "category": "food",
+      "title": "Eating more fruit and vegetables lowers the risk of heart disease and early death",
+      "exposure": "Fruit and vegetables",
+      "outcome": "Heart disease, stroke, cancer and early death",
+      "population": "Adults",
+      "direction": "decreases",
+      "effect": "About 5 servings a day (2 fruit, 3 vegetables) was linked to the lowest risk of early death, with little extra benefit beyond that.",
+      "confidence": "moderate",
+      "confidence_reasons": "Very large, consistent cohort evidence with a clear dose-response relationship. Few long-term trials exist.",
+      "summary": "People who eat around five servings of fruit and vegetables a day live longer and have less heart disease. Starchy potatoes and fruit juice don't show the same benefit.",
+      "triggers": [
+        { "signal": "fruit_veg_servings_per_day", "op": "<", "value": 3, "stance": "gap" },
+        { "signal": "fruit_veg_servings_per_day", "op": ">=", "value": 5, "stance": "strength" }
+      ],
+      "sources": [
+        { "citation": "Aune D et al. Fruit and vegetable intake and the risk of cardiovascular disease, total cancer and all-cause mortality. Int J Epidemiol, 2017", "design": "Meta-analysis of cohort studies", "tier": 3, "query": "Aune fruit and vegetable intake risk of cardiovascular disease total cancer all-cause mortality 2017" },
+        { "citation": "Wang DD et al. Fruit and vegetable intake and mortality. Circulation, 2021", "design": "Two large cohorts plus meta-analysis", "tier": 3, "query": "Wang fruit and vegetable intake and mortality Circulation 2021" }
+      ]
+    },
+    {
+      "id": "whole-grains-cvd",
+      "category": "food",
+      "title": "Whole grains lower the risk of heart disease and early death",
+      "exposure": "Whole grains (oats, brown rice, wholemeal bread, whole-wheat pasta)",
+      "outcome": "Heart disease, stroke, type 2 diabetes and early death",
+      "population": "Adults",
+      "direction": "decreases",
+      "effect": "About 90 g a day of whole grains (roughly three servings) was linked to around 20% lower risk of heart disease and early death.",
+      "confidence": "moderate",
+      "confidence_reasons": "Consistent cohort evidence with dose-response, supported by trials showing improved cholesterol and weight.",
+      "summary": "Swapping refined grains for whole grains is one of the easiest evidence-backed changes. Benefits are seen at around three servings a day.",
+      "triggers": [
+        { "signal": "whole_grain_servings_per_day", "op": ">=", "value": 3, "stance": "strength" },
+        { "signal": "whole_grain_servings_per_day", "op": "<", "value": 1, "stance": "gap" }
+      ],
+      "sources": [
+        { "citation": "Aune D et al. Whole grain consumption and risk of cardiovascular disease, cancer, and all cause and cause specific mortality. BMJ, 2016", "design": "Meta-analysis of cohort studies", "tier": 3, "query": "Aune whole grain consumption risk cardiovascular disease cancer mortality BMJ 2016" },
+        { "citation": "Reynolds A et al. Carbohydrate quality and human health. Lancet, 2019", "design": "Meta-analysis of cohorts and trials", "tier": 1, "query": "Reynolds carbohydrate quality and human health Lancet 2019" }
+      ]
+    },
+    {
+      "id": "legumes-ldl",
+      "category": "food",
+      "title": "Beans, lentils and chickpeas lower LDL cholesterol",
+      "exposure": "Legumes (pulses)",
+      "outcome": "LDL cholesterol",
+      "population": "Adults",
+      "direction": "decreases",
+      "effect": "About one serving a day (around 130 g) lowered LDL cholesterol by roughly 5% in trials.",
+      "confidence": "moderate",
+      "confidence_reasons": "Meta-analysis of randomised trials; outcome is a risk marker (cholesterol) rather than heart attacks themselves.",
+      "summary": "Legumes are cheap, high in fibre and protein, and lower 'bad' LDL cholesterol in controlled trials. They are one of the easiest ways to add fibre.",
+      "triggers": [
+        { "signal": "legume_servings_per_week", "op": ">=", "value": 3, "stance": "strength" },
+        { "signal": "legume_servings_per_week", "op": "<", "value": 1, "stance": "gap" }
+      ],
+      "sources": [
+        { "citation": "Ha V et al. Effect of dietary pulse intake on established therapeutic lipid targets for cardiovascular risk reduction. CMAJ, 2014", "design": "Meta-analysis of randomised trials", "tier": 1, "query": "Ha effect of dietary pulse intake on established therapeutic lipid targets CMAJ 2014" }
+      ]
+    },
+    {
+      "id": "nuts-cvd",
+      "category": "food",
+      "title": "A daily handful of nuts is linked to lower heart disease risk",
+      "exposure": "Nuts and seeds",
+      "outcome": "Heart disease and early death",
+      "population": "Adults",
+      "direction": "decreases",
+      "effect": "About 28 g a day (a small handful) was linked to around 20% lower risk of heart disease and early death.",
+      "confidence": "moderate",
+      "confidence_reasons": "Consistent cohort evidence with dose-response, supported by a large trial (PREDIMED) in which a nut-supplemented Mediterranean diet reduced cardiovascular events.",
+      "summary": "Despite being calorie-dense, regular nut eaters do not gain more weight and have less heart disease. Unsalted nuts are a strong evidence-backed snack.",
+      "triggers": [
+        { "signal": "nut_servings_per_week", "op": ">=", "value": 3, "stance": "strength" }
+      ],
+      "sources": [
+        { "citation": "Aune D et al. Nut consumption and risk of cardiovascular disease, total cancer, all-cause and cause-specific mortality. BMC Medicine, 2016", "design": "Meta-analysis of cohort studies", "tier": 3, "query": "Aune nut consumption risk cardiovascular disease total cancer mortality BMC Med 2016" }
+      ]
+    },
+    {
+      "id": "fish-heart",
+      "category": "food",
+      "title": "Eating fish about twice a week is linked to fewer heart disease deaths",
+      "exposure": "Fish, especially oily fish (salmon, sardines, mackerel)",
+      "outcome": "Death from coronary heart disease",
+      "population": "Adults",
+      "direction": "decreases",
+      "effect": "One to two servings of oily fish a week was linked to lower risk of dying from heart disease.",
+      "confidence": "moderate",
+      "confidence_reasons": "Consistent cohort evidence and biological plausibility; recommended by major dietary guidelines. Supplement trials do not show the same benefit.",
+      "summary": "Major guidelines recommend about two servings of fish a week, ideally oily fish. The benefit appears to come from eating fish rather than taking fish oil pills.",
+      "triggers": [
+        { "signal": "fish_servings_per_week", "op": ">=", "value": 2, "stance": "strength" }
+      ],
+      "sources": [
+        { "citation": "Mozaffarian D, Rimm EB. Fish intake, contaminants, and human health: evaluating the risks and the benefits. JAMA, 2006", "design": "Systematic review", "tier": 1, "query": "Mozaffarian Rimm fish intake contaminants human health JAMA 2006" }
+      ]
+    },
+    {
+      "id": "ultra-processed-health",
+      "category": "food",
+      "title": "Diets high in ultra-processed food are linked to worse health and make people eat more",
+      "exposure": "Ultra-processed foods (NOVA group 4)",
+      "outcome": "Early death, heart disease, type 2 diabetes, weight gain",
+      "population": "Adults",
+      "direction": "increases",
+      "effect": "In a controlled trial people ate about 500 kcal a day more on an ultra-processed diet than on an unprocessed one. Large reviews link higher intake to higher risk of several chronic diseases.",
+      "confidence": "moderate",
+      "confidence_reasons": "Consistent observational evidence across many outcomes plus one tightly controlled inpatient trial. 'Ultra-processed' is a broad category and not all such foods are equally harmful.",
+      "summary": "Ultra-processed foods are easy to overeat, and diets built around them are linked to worse health. You don't need to avoid them completely; shifting the balance toward whole foods matters most.",
+      "triggers": [
+        { "signal": "ultra_processed_kcal_share", "op": ">=", "value": 0.5, "stance": "gap" },
+        { "signal": "ultra_processed_kcal_share", "op": "<=", "value": 0.2, "stance": "strength" }
+      ],
+      "sources": [
+        { "citation": "Hall KD et al. Ultra-processed diets cause excess calorie intake and weight gain: an inpatient randomized controlled trial of ad libitum food intake. Cell Metabolism, 2019", "design": "Randomised controlled trial (20 adults, inpatient)", "tier": 4, "query": "Hall ultra-processed diets cause excess calorie intake and weight gain inpatient randomized controlled trial Cell Metab 2019" },
+        { "citation": "Lane MM et al. Ultra-processed food exposure and adverse health outcomes: umbrella review of epidemiological meta-analyses. BMJ, 2024", "design": "Umbrella review of meta-analyses", "tier": 1, "query": "Lane ultra-processed food exposure adverse health outcomes umbrella review BMJ 2024" }
+      ]
+    },
+    {
+      "id": "sodium-blood-pressure",
+      "category": "nutrient",
+      "title": "Eating less salt lowers blood pressure and cardiovascular risk",
+      "exposure": "Sodium (salt)",
+      "outcome": "Blood pressure, stroke and cardiovascular events",
+      "population": "Adults, especially those with raised blood pressure",
+      "direction": "increases",
+      "effect": "Reducing salt intake lowers blood pressure in trials, and a large trial of salt substitutes reduced strokes, cardiovascular events and deaths.",
+      "confidence": "high",
+      "confidence_reasons": "Many randomised trials on blood pressure plus a large outcome trial. Note: sodium estimates from photos are unreliable because salt is invisible.",
+      "summary": "Most people eat more salt than recommended, mainly from bread, processed and restaurant food. Cutting back lowers blood pressure. Your logged sodium is likely an underestimate.",
+      "triggers": [
+        { "signal": "sodium_mg_per_day", "op": ">", "value": 2300, "stance": "gap" }
+      ],
+      "sources": [
+        { "citation": "He FJ, Li J, MacGregor GA. Effect of longer term modest salt reduction on blood pressure. BMJ, 2013", "design": "Meta-analysis of randomised trials", "tier": 1, "query": "He Li MacGregor effect of longer term modest salt reduction on blood pressure BMJ 2013" },
+        { "citation": "Neal B et al. Effect of salt substitution on cardiovascular events and death. NEJM, 2021", "design": "Randomised controlled trial (about 21,000 adults)", "tier": 2, "query": "Neal effect of salt substitution on cardiovascular events and death N Engl J Med 2021" }
+      ]
+    },
+    {
+      "id": "saturated-fat-replacement",
+      "category": "nutrient",
+      "title": "Replacing saturated fat with unsaturated fat lowers cardiovascular events",
+      "exposure": "Saturated fat (butter, fatty meat, cheese, coconut and palm oil)",
+      "outcome": "Cardiovascular events",
+      "population": "Adults",
+      "direction": "increases",
+      "effect": "Cutting saturated fat for at least two years reduced combined cardiovascular events by about 17%, with the clearest benefit when it was replaced by polyunsaturated fat.",
+      "confidence": "moderate",
+      "confidence_reasons": "Cochrane review of randomised trials; benefit depends on what replaces the saturated fat (refined carbohydrates show no benefit).",
+      "summary": "What you replace saturated fat with matters. Swapping butter and fatty meat for olive oil, nuts, seeds and fish lowers heart disease risk; swapping it for refined carbs doesn't.",
+      "triggers": [
+        { "signal": "saturated_fat_pct_kcal", "op": ">", "value": 10, "stance": "gap" },
+        { "signal": "saturated_fat_pct_kcal", "op": "<=", "value": 10, "stance": "strength" }
+      ],
+      "sources": [
+        { "citation": "Hooper L et al. Reduction in saturated fat intake for cardiovascular disease. Cochrane Database of Systematic Reviews, 2020", "design": "Cochrane systematic review of randomised trials", "tier": 1, "query": "Hooper reduction in saturated fat intake for cardiovascular disease Cochrane 2020" }
+      ]
+    },
+    {
+      "id": "added-sugar-limit",
+      "category": "nutrient",
+      "title": "Keeping free sugars under 10% of calories reduces weight gain and tooth decay",
+      "exposure": "Free and added sugars",
+      "outcome": "Body weight and dental caries",
+      "population": "Adults and children",
+      "direction": "increases",
+      "effect": "WHO strongly recommends free sugars below 10% of daily energy, and suggests below 5% for further benefit.",
+      "confidence": "moderate",
+      "confidence_reasons": "WHO guideline based on systematic reviews of trials and cohort studies (moderate-quality evidence).",
+      "summary": "Free sugars (added sugar, honey, syrups and juice) should be under 10% of calories, about 50 g on a 2,000 kcal diet. Sugar in whole fruit doesn't count.",
+      "triggers": [
+        { "signal": "added_sugar_pct_kcal", "op": ">", "value": 10, "stance": "gap" }
+      ],
+      "sources": [
+        { "citation": "World Health Organization. Guideline: Sugars intake for adults and children, 2015", "design": "WHO guideline", "tier": 1, "query": "WHO guideline sugars intake for adults and children 2015" }
+      ]
+    },
+    {
+      "id": "seed-oils-inflammation",
+      "category": "fad",
+      "title": "Seed oils (linoleic acid) do not cause inflammation or heart disease",
+      "exposure": "Linoleic acid from seed oils (soybean, sunflower, corn, canola)",
+      "outcome": "Inflammation and heart disease",
+      "population": "Adults",
+      "direction": "decreases",
+      "effect": "Higher linoleic acid intake and blood levels are linked to lower, not higher, heart disease risk; trials show it does not raise inflammatory markers.",
+      "confidence": "moderate",
+      "confidence_reasons": "Consistent cohort studies, including objective blood biomarkers, plus a systematic review of controlled feeding trials on inflammation.",
+      "summary": "The claim that seed oils are 'toxic' or inflammatory is not supported. Linoleic acid is linked to lower heart disease risk. Deep-fried food is a separate concern, mostly because of what is being fried.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Farvid MS et al. Dietary linoleic acid and risk of coronary heart disease: a systematic review and meta-analysis of prospective cohort studies. Circulation, 2014", "design": "Meta-analysis of cohort studies", "tier": 3, "query": "Farvid dietary linoleic acid risk of coronary heart disease meta-analysis Circulation 2014" },
+        { "citation": "Marklund M et al. Biomarkers of dietary omega-6 fatty acids and incident cardiovascular disease and mortality. Circulation, 2019", "design": "Pooled analysis of 30 cohorts using blood biomarkers", "tier": 3, "query": "Marklund biomarkers of dietary omega-6 fatty acids incident cardiovascular disease mortality Circulation 2019" },
+        { "citation": "Johnson GH, Fritsche K. Effect of dietary linoleic acid on markers of inflammation in healthy persons: a systematic review of randomized controlled trials. J Acad Nutr Diet, 2012", "design": "Systematic review of randomised trials", "tier": 1, "query": "Johnson Fritsche effect of dietary linoleic acid on markers of inflammation systematic review 2012" }
+      ]
+    },
+    {
+      "id": "intermittent-fasting-weight",
+      "category": "timing",
+      "title": "Intermittent fasting works for weight loss about as well as ordinary calorie cutting",
+      "exposure": "Time-restricted eating and intermittent fasting",
+      "outcome": "Weight loss",
+      "population": "Adults with overweight or obesity",
+      "direction": "no_effect",
+      "effect": "In a 12-month trial, adding an 8-hour eating window to calorie restriction gave no extra weight loss over calorie restriction alone.",
+      "confidence": "moderate",
+      "confidence_reasons": "Several randomised trials, including a 12-month trial, consistently find no advantage beyond eating fewer calories.",
+      "summary": "Fasting windows help some people eat less, which is why they can work. There is no good evidence of special metabolic benefits beyond that. Pick it if it suits your routine.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Liu D et al. Calorie restriction with or without time-restricted eating in weight loss. NEJM, 2022", "design": "Randomised controlled trial (139 adults, 12 months)", "tier": 2, "query": "Liu calorie restriction with or without time-restricted eating in weight loss N Engl J Med 2022" },
+        { "citation": "Lowe DA et al. Effects of time-restricted eating on weight loss and other metabolic parameters (TREAT). JAMA Internal Medicine, 2020", "design": "Randomised controlled trial (116 adults, 12 weeks)", "tier": 4, "query": "Lowe effects of time-restricted eating on weight loss TREAT randomized clinical trial JAMA Intern Med 2020" }
+      ]
+    },
+    {
+      "id": "low-carb-vs-low-fat",
+      "category": "diet",
+      "title": "Low-carb and low-fat diets give similar weight loss after a year",
+      "exposure": "Low-carbohydrate or ketogenic diets",
+      "outcome": "Weight loss at 12 months",
+      "population": "Adults with overweight",
+      "direction": "no_effect",
+      "effect": "In a 12-month trial of over 600 adults, healthy low-carb and healthy low-fat diets produced no significant difference in weight loss.",
+      "confidence": "moderate",
+      "confidence_reasons": "Large randomised trial consistent with meta-analyses; short-term low-carb advantages largely disappear by one year.",
+      "summary": "Low-carb can work, but not better than other diets in the long run. The diet you can stick to, built on whole foods, matters more than the carb-fat split.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Gardner CD et al. Effect of low-fat vs low-carbohydrate diet on 12-month weight loss in overweight adults (DIETFITS). JAMA, 2018", "design": "Randomised controlled trial (609 adults, 12 months)", "tier": 2, "query": "Gardner effect of low-fat vs low-carbohydrate diet on 12-month weight loss DIETFITS JAMA 2018" }
+      ]
+    },
+    {
+      "id": "mediterranean-cvd",
+      "category": "diet",
+      "title": "A Mediterranean diet reduces heart attacks and strokes",
+      "exposure": "Mediterranean diet (vegetables, legumes, whole grains, olive oil, nuts, fish)",
+      "outcome": "Major cardiovascular events",
+      "population": "Adults at high cardiovascular risk",
+      "direction": "decreases",
+      "effect": "In the PREDIMED trial, a Mediterranean diet with extra olive oil or nuts reduced major cardiovascular events by about 30%.",
+      "confidence": "moderate",
+      "confidence_reasons": "Large randomised trials (PREDIMED, re-analysed after randomisation problems were found, and CORDIOPREV) plus consistent cohort evidence.",
+      "summary": "The Mediterranean pattern has some of the strongest trial evidence of any diet for preventing heart disease.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Estruch R et al. Primary prevention of cardiovascular disease with a Mediterranean diet supplemented with extra-virgin olive oil or nuts. NEJM, 2018", "design": "Randomised controlled trial (about 7,400 adults)", "tier": 2, "query": "Estruch primary prevention of cardiovascular disease Mediterranean diet extra-virgin olive oil or nuts 2018" },
+        { "citation": "Delgado-Lista J et al. Long-term secondary prevention of cardiovascular disease with a Mediterranean diet and a low-fat diet (CORDIOPREV). Lancet, 2022", "design": "Randomised controlled trial (about 1,000 adults with heart disease)", "tier": 2, "query": "Delgado-Lista CORDIOPREV secondary prevention Mediterranean diet low-fat diet Lancet 2022" }
+      ]
+    },
+    {
+      "id": "dash-blood-pressure",
+      "category": "diet",
+      "title": "The DASH diet lowers blood pressure",
+      "exposure": "DASH diet (fruit, vegetables, low-fat dairy, whole grains, less salt)",
+      "outcome": "Blood pressure",
+      "population": "Adults with normal or raised blood pressure",
+      "direction": "decreases",
+      "effect": "DASH combined with lower salt reduced blood pressure substantially in controlled feeding trials, most in people with hypertension.",
+      "confidence": "high",
+      "confidence_reasons": "Multiple well-controlled randomised feeding trials with consistent results.",
+      "summary": "DASH is one of the best-proven eating patterns for lowering blood pressure, especially with less salt.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Sacks FM et al. Effects on blood pressure of reduced dietary sodium and the Dietary Approaches to Stop Hypertension (DASH) diet. NEJM, 2001", "design": "Randomised controlled feeding trial", "tier": 2, "query": "Sacks effects on blood pressure of reduced dietary sodium and the DASH diet N Engl J Med 2001" }
+      ]
+    },
+    {
+      "id": "carnivore-long-term",
+      "category": "diet",
+      "title": "There is no long-term evidence that a carnivore diet is safe or beneficial",
+      "exposure": "Carnivore (all-meat) diet",
+      "outcome": "Long-term health",
+      "population": "Adults",
+      "direction": "unclear",
+      "effect": "No randomised trials exist. The main study is a self-reported online survey of followers.",
+      "confidence": "very_low",
+      "confidence_reasons": "Evidence is limited to a self-selected survey and anecdotes; no controlled studies or long-term follow-up.",
+      "summary": "Claims about carnivore diets rest on personal stories, not trials. It removes fibre entirely and usually raises processed meat and saturated fat, which have well-established risks.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Lennerz BS et al. Behavioral characteristics and self-reported health status among 2029 adults consuming a 'carnivore diet'. Current Developments in Nutrition, 2021", "design": "Self-reported online survey", "tier": 5, "query": "Lennerz behavioral characteristics self-reported health status adults consuming carnivore diet 2021" }
+      ]
+    },
+    {
+      "id": "paleo-short-term",
+      "category": "diet",
+      "title": "Paleo diets show short-term benefits but have no long-term trials",
+      "exposure": "Paleolithic diet",
+      "outcome": "Metabolic risk markers",
+      "population": "Adults",
+      "direction": "decreases",
+      "effect": "Small, short trials found improvements in waist size, blood pressure and blood fats, largely in line with eating fewer processed foods.",
+      "confidence": "low",
+      "confidence_reasons": "Few small trials lasting weeks to months; no long-term outcome data.",
+      "summary": "Paleo's benefits likely come from cutting processed food and eating more vegetables. Excluding whole grains and legumes isn't supported by evidence.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Manheimer EW et al. Paleolithic nutrition for metabolic syndrome: systematic review and meta-analysis. Am J Clin Nutr, 2015", "design": "Meta-analysis of small randomised trials", "tier": 4, "query": "Manheimer paleolithic nutrition for metabolic syndrome systematic review meta-analysis 2015" }
+      ]
+    },
+    {
+      "id": "vegetarian-heart",
+      "category": "diet",
+      "title": "Vegetarian diets are linked to lower heart disease risk",
+      "exposure": "Vegetarian and vegan diets",
+      "outcome": "Ischaemic heart disease and stroke",
+      "population": "Adults",
+      "direction": "decreases",
+      "effect": "In a large UK cohort, vegetarians had about 22% lower heart disease risk but a higher risk of haemorrhagic stroke.",
+      "confidence": "low",
+      "confidence_reasons": "Observational evidence from large cohorts; vegetarians differ from others in many lifestyle habits.",
+      "summary": "Well-planned vegetarian diets are linked to less heart disease. Nutrients to watch are B12, iodine, iron and omega-3.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Tong TYN et al. Risks of ischaemic heart disease and stroke in meat eaters, fish eaters, and vegetarians over 18 years of follow-up (EPIC-Oxford). BMJ, 2019", "design": "Prospective cohort (about 48,000 adults)", "tier": 3, "query": "Tong risks of ischaemic heart disease and stroke in meat eaters fish eaters vegetarians EPIC-Oxford BMJ 2019" }
+      ]
+    },
+    {
+      "id": "vegan-b12",
+      "category": "supplement",
+      "title": "People eating vegan diets need a reliable source of vitamin B12",
+      "exposure": "Vitamin B12 from fortified foods or supplements",
+      "outcome": "B12 deficiency (anaemia, nerve damage)",
+      "population": "People eating vegan or mostly plant-based diets",
+      "direction": "decreases",
+      "effect": "Vitamin B12 is found almost only in animal foods; without fortified foods or a supplement, deficiency is common in vegans.",
+      "confidence": "high",
+      "confidence_reasons": "Established physiology and consistent guidance from dietetic associations and health authorities.",
+      "summary": "If you eat few or no animal foods, take a B12 supplement or eat B12-fortified foods every day.",
+      "triggers": [
+        { "signal": "b12_pct_target", "op": "<", "value": 50, "stance": "info" }
+      ],
+      "sources": [
+        { "citation": "Melina V et al. Position of the Academy of Nutrition and Dietetics: vegetarian diets. J Acad Nutr Diet, 2016", "design": "Professional position statement", "tier": 1, "query": "Melina position of the Academy of Nutrition and Dietetics vegetarian diets 2016" }
+      ]
+    },
+    {
+      "id": "vitamin-d-supplements",
+      "category": "supplement",
+      "title": "Vitamin D supplements do not prevent cancer or heart disease in healthy adults",
+      "exposure": "Vitamin D supplements (2,000 IU a day)",
+      "outcome": "Cancer and cardiovascular events",
+      "population": "Healthy adults without deficiency",
+      "direction": "no_effect",
+      "effect": "In a trial of about 26,000 adults over five years, vitamin D did not lower cancer or cardiovascular events.",
+      "confidence": "high",
+      "confidence_reasons": "Large, long randomised controlled trial consistent with other trials.",
+      "summary": "Vitamin D supplements don't prevent cancer or heart disease in people who aren't deficient. They are still worth taking if you are deficient, get little sun, or have been advised to by a clinician.",
+      "triggers": [
+        { "signal": "vitamin_d_pct_target", "op": "<", "value": 50, "stance": "info" }
+      ],
+      "sources": [
+        { "citation": "Manson JE et al. Vitamin D supplements and prevention of cancer and cardiovascular disease (VITAL). NEJM, 2019", "design": "Randomised controlled trial (25,871 adults)", "tier": 2, "query": "Manson vitamin D supplements and prevention of cancer and cardiovascular disease VITAL 2019" }
+      ]
+    },
+    {
+      "id": "omega3-supplements",
+      "category": "supplement",
+      "title": "Fish oil supplements do little to prevent heart disease in most people",
+      "exposure": "Omega-3 (fish oil) supplements",
+      "outcome": "Cardiovascular events and death",
+      "population": "Adults",
+      "direction": "no_effect",
+      "effect": "Large trials and a Cochrane review found little or no effect on heart attacks, strokes or death for standard-dose fish oil.",
+      "confidence": "high",
+      "confidence_reasons": "Large randomised trials and a Cochrane review of 86 trials rated at moderate-to-high certainty.",
+      "summary": "Eating fish is linked to heart benefits, but fish oil capsules mostly aren't. Prescription high-dose formulations for specific patients are a separate question for a doctor.",
+      "triggers": [
+        { "signal": "fish_servings_per_week", "op": "<", "value": 1, "stance": "info" }
+      ],
+      "sources": [
+        { "citation": "Abdelhamid AS et al. Omega-3 fatty acids for the primary and secondary prevention of cardiovascular disease. Cochrane Database of Systematic Reviews, 2020", "design": "Cochrane systematic review of randomised trials", "tier": 1, "query": "Abdelhamid omega-3 fatty acids primary secondary prevention cardiovascular disease Cochrane 2020" },
+        { "citation": "Manson JE et al. Marine n-3 fatty acids and prevention of cardiovascular disease and cancer (VITAL). NEJM, 2019", "design": "Randomised controlled trial (25,871 adults)", "tier": 2, "query": "Manson marine n-3 fatty acids prevention of cardiovascular disease and cancer 2019" }
+      ]
+    },
+    {
+      "id": "multivitamins",
+      "category": "supplement",
+      "title": "Multivitamins have not been shown to prevent heart disease or cancer",
+      "exposure": "Multivitamin and mineral supplements",
+      "outcome": "Cardiovascular disease, cancer and death",
+      "population": "Healthy, non-pregnant adults",
+      "direction": "no_effect",
+      "effect": "The US Preventive Services Task Force found insufficient evidence of benefit, and recommends against beta-carotene and vitamin E supplements for prevention.",
+      "confidence": "moderate",
+      "confidence_reasons": "Systematic review of randomised trials by a national guideline body.",
+      "summary": "A multivitamin won't make up for a poor diet or prevent chronic disease. Specific supplements make sense for specific needs, such as folic acid in pregnancy or B12 for vegans.",
+      "triggers": [],
+      "sources": [
+        { "citation": "US Preventive Services Task Force. Vitamin, mineral, and multivitamin supplementation to prevent cardiovascular disease and cancer: recommendation statement. JAMA, 2022", "design": "Guideline based on systematic review", "tier": 1, "query": "USPSTF vitamin mineral multivitamin supplementation prevent cardiovascular disease cancer JAMA 2022" }
+      ]
+    },
+    {
+      "id": "eggs-heart",
+      "category": "food",
+      "title": "Up to an egg a day is not linked to higher heart disease risk for most people",
+      "exposure": "Eggs",
+      "outcome": "Cardiovascular disease",
+      "population": "Adults (evidence less clear for people with type 2 diabetes)",
+      "direction": "no_effect",
+      "effect": "In three large US cohorts plus a meta-analysis, eating up to one egg a day was not associated with higher cardiovascular risk.",
+      "confidence": "low",
+      "confidence_reasons": "Observational evidence; some studies disagree, especially at higher intakes.",
+      "summary": "Moderate egg intake looks fine for most people. What you eat with them, such as bacon and white toast, matters more.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Drouin-Chartier JP et al. Egg consumption and risk of cardiovascular disease: three large prospective US cohort studies, systematic review, and updated meta-analysis. BMJ, 2020", "design": "Cohorts plus meta-analysis", "tier": 3, "query": "Drouin-Chartier egg consumption risk of cardiovascular disease three large prospective US cohort BMJ 2020" }
+      ]
+    },
+    {
+      "id": "protein-muscle",
+      "category": "nutrient",
+      "title": "Extra protein boosts muscle gains from strength training, up to about 1.6 g per kg",
+      "exposure": "Protein intake above the basic recommendation",
+      "outcome": "Muscle mass and strength with resistance training",
+      "population": "Adults doing resistance training",
+      "direction": "increases",
+      "effect": "Protein supplementation increased gains in lean mass, with benefits levelling off at about 1.6 g per kg of body weight per day.",
+      "confidence": "moderate",
+      "confidence_reasons": "Meta-analysis of 49 randomised trials; effects are modest.",
+      "summary": "If you lift weights, eating around 1.6 g of protein per kg of body weight a day helps a little. Beyond that there is little extra benefit.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Morton RW et al. A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength. Br J Sports Med, 2018", "design": "Meta-analysis of randomised trials", "tier": 1, "query": "Morton protein supplementation resistance training-induced gains muscle mass strength meta-regression 2018" }
+      ]
+    },
+    {
+      "id": "protein-timing",
+      "category": "timing",
+      "title": "Total daily protein matters more than an 'anabolic window' after workouts",
+      "exposure": "Timing of protein around exercise",
+      "outcome": "Muscle growth and strength",
+      "population": "Adults doing resistance training",
+      "direction": "no_effect",
+      "effect": "Once total daily protein was accounted for, timing protein right after training made no significant difference.",
+      "confidence": "low",
+      "confidence_reasons": "Meta-analysis of a limited number of small trials.",
+      "summary": "There's no need to rush a protein shake after training. Hitting your total protein across the day is what counts.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Schoenfeld BJ, Aragon AA, Krieger JW. The effect of protein timing on muscle strength and hypertrophy: a meta-analysis. J Int Soc Sports Nutr, 2013", "design": "Meta-analysis of randomised trials", "tier": 1, "query": "Schoenfeld Aragon Krieger effect of protein timing on muscle strength and hypertrophy meta-analysis 2013" }
+      ]
+    },
+    {
+      "id": "detox-diets",
+      "category": "fad",
+      "title": "There is no good evidence that detox diets or juice cleanses remove toxins",
+      "exposure": "Detox diets, juice cleanses, detox teas",
+      "outcome": "Toxin removal and weight",
+      "population": "Adults",
+      "direction": "no_effect",
+      "effect": "A systematic review found no rigorous clinical evidence that commercial detox diets remove toxins; any weight lost is regained.",
+      "confidence": "low",
+      "confidence_reasons": "Very few studies exist and they are small and poorly controlled; the claims themselves are rarely specific enough to test.",
+      "summary": "Your liver and kidneys already handle detoxification. Detox products don't name which toxins they remove or show that they do.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Klein AV, Kiat H. Detox diets for toxin elimination and weight management: a critical review of the evidence. J Hum Nutr Diet, 2015", "design": "Systematic review", "tier": 1, "query": "Klein Kiat detox diets for toxin elimination and weight management critical review 2015" }
+      ]
+    },
+    {
+      "id": "alkaline-diet-cancer",
+      "category": "fad",
+      "title": "Alkaline diets and alkaline water do not prevent or treat cancer",
+      "exposure": "Alkaline diet or alkaline water",
+      "outcome": "Cancer prevention and treatment",
+      "population": "Adults",
+      "direction": "no_effect",
+      "effect": "A systematic review found no studies supporting an alkaline diet for cancer; food cannot meaningfully change blood pH.",
+      "confidence": "low",
+      "confidence_reasons": "The absence of supporting evidence plus well-established physiology of blood pH regulation.",
+      "summary": "Your body tightly controls blood pH regardless of what you eat. The vegetable-heavy part of 'alkaline' diets is healthy; the pH theory isn't.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Fenton TR, Huang T. Systematic review of the association between dietary acid load, alkaline water and cancer. BMJ Open, 2016", "design": "Systematic review", "tier": 1, "query": "Fenton Huang systematic review association dietary acid load alkaline water and cancer BMJ Open 2016" }
+      ]
+    },
+    {
+      "id": "sweeteners-weight",
+      "category": "food",
+      "title": "Non-sugar sweeteners don't help with long-term weight control",
+      "exposure": "Non-sugar sweeteners (aspartame, sucralose, stevia and others)",
+      "outcome": "Long-term body weight and chronic disease",
+      "population": "Adults and children without diabetes",
+      "direction": "no_effect",
+      "effect": "WHO advises against using non-sugar sweeteners for weight control; long-term use was linked in observational studies to slightly higher risk of type 2 diabetes and heart disease.",
+      "confidence": "low",
+      "confidence_reasons": "Conditional WHO recommendation based on low-certainty evidence.",
+      "summary": "Diet drinks are better than sugary ones, but sweeteners don't help much with weight in the long run. Water is the better default.",
+      "triggers": [],
+      "sources": [
+        { "citation": "World Health Organization. Use of non-sugar sweeteners: WHO guideline, 2023", "design": "WHO guideline", "tier": 1, "query": "WHO guideline use of non-sugar sweeteners 2023" }
+      ]
+    },
+    {
+      "id": "alcohol-cancer",
+      "category": "food",
+      "title": "Alcohol raises cancer risk, and moderate drinking has no proven health benefit",
+      "exposure": "Alcohol",
+      "outcome": "Cancer and early death",
+      "population": "Adults",
+      "direction": "increases",
+      "effect": "Alcohol is a Group 1 carcinogen linked to at least seven cancers. After correcting for study biases, low-volume drinking was not linked to longer life.",
+      "confidence": "high",
+      "confidence_reasons": "IARC classification for cancer; recent meta-analysis correcting earlier methodological biases about 'protective' moderate drinking.",
+      "summary": "Less is better. The idea that a daily glass of wine protects your heart came largely from flawed comparisons and isn't a reason to drink.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Zhao J et al. Association between daily alcohol intake and risk of all-cause mortality: a systematic review and meta-analyses. JAMA Network Open, 2023", "design": "Meta-analysis of cohort studies", "tier": 3, "query": "Zhao association between daily alcohol intake and risk of all-cause mortality meta-analyses JAMA Netw Open 2023" }
+      ]
+    },
+    {
+      "id": "coffee-health",
+      "category": "food",
+      "title": "Moderate coffee drinking is not harmful for most adults",
+      "exposure": "Coffee (about 3-4 cups a day)",
+      "outcome": "Early death and chronic disease",
+      "population": "Adults, excluding pregnancy",
+      "direction": "decreases",
+      "effect": "An umbrella review linked 3-4 cups a day with slightly lower risk of early death and several diseases; pregnant people should limit caffeine.",
+      "confidence": "low",
+      "confidence_reasons": "Large body of observational evidence with possible confounding.",
+      "summary": "Coffee is fine and possibly mildly beneficial for most adults. Watch the sugar and syrups added to it, and limit caffeine during pregnancy.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Poole R et al. Coffee consumption and health: umbrella review of meta-analyses of multiple health outcomes. BMJ, 2017", "design": "Umbrella review of meta-analyses", "tier": 1, "query": "Poole coffee consumption and health umbrella review of meta-analyses BMJ 2017" }
+      ]
+    },
+    {
+      "id": "breakfast-weight",
+      "category": "timing",
+      "title": "Skipping breakfast does not cause weight gain",
+      "exposure": "Eating or skipping breakfast",
+      "outcome": "Body weight and daily calorie intake",
+      "population": "Adults",
+      "direction": "no_effect",
+      "effect": "In randomised trials, people who ate breakfast ate slightly more calories in total and did not lose more weight.",
+      "confidence": "low",
+      "confidence_reasons": "Meta-analysis of randomised trials that were short and of mixed quality.",
+      "summary": "Breakfast isn't the most important meal for weight. Eat it if you're hungry; skip it if you're not.",
+      "triggers": [],
+      "sources": [
+        { "citation": "Sievert K et al. Effect of breakfast on weight and energy intake: systematic review and meta-analysis of randomised controlled trials. BMJ, 2019", "design": "Meta-analysis of randomised trials", "tier": 1, "query": "Sievert effect of breakfast on weight and energy intake systematic review meta-analysis BMJ 2019" }
+      ]
+    }
+  ],
+  "diets": [
+    { "id": "none", "name": "No particular diet", "claim_ids": [] },
+    { "id": "mediterranean", "name": "Mediterranean", "claim_ids": ["mediterranean-cvd", "nuts-cvd", "fish-heart", "legumes-ldl"] },
+    { "id": "keto", "name": "Keto / low-carb", "claim_ids": ["low-carb-vs-low-fat", "saturated-fat-replacement", "fiber-chronic-disease"] },
+    { "id": "carnivore", "name": "Carnivore", "claim_ids": ["carnivore-long-term", "fiber-chronic-disease", "processed-meat-colorectal", "saturated-fat-replacement"] },
+    { "id": "vegan", "name": "Vegan", "claim_ids": ["vegetarian-heart", "vegan-b12", "legumes-ldl"] },
+    { "id": "vegetarian", "name": "Vegetarian", "claim_ids": ["vegetarian-heart", "vegan-b12"] },
+    { "id": "intermittent-fasting", "name": "Intermittent fasting", "claim_ids": ["intermittent-fasting-weight", "breakfast-weight"] },
+    { "id": "paleo", "name": "Paleo", "claim_ids": ["paleo-short-term", "whole-grains-cvd", "legumes-ldl"] },
+    { "id": "low-fat", "name": "Low-fat", "claim_ids": ["low-carb-vs-low-fat", "saturated-fat-replacement"] },
+    { "id": "dash", "name": "DASH", "claim_ids": ["dash-blood-pressure", "sodium-blood-pressure"] }
+  ]
+}
