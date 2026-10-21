@@ -32,6 +32,15 @@ The Anthropic API key lives only in the Supabase functions, never in the app.
 
 You need Node 20+, the [Supabase CLI](https://supabase.com/docs/guides/cli), an [Anthropic API key](https://console.anthropic.com) and a free [USDA FoodData Central key](https://fdc.nal.usda.gov/api-key-signup). For the local Supabase stack you also need Docker.
 
+### Quick start (macOS or Linux)
+
+```bash
+scripts/dev.sh          # starts Docker if needed, Supabase, the edge functions and the Expo dev server
+scripts/dev.sh stop     # stops Supabase; your data is kept
+```
+
+The script writes your machine's LAN address and the local API key into `mobile/.env`, and installs the app's dependencies when the lockfile changes. It starts the edge functions only once `supabase/functions/.env` has your API keys. Extra arguments go to `expo start`, for example `scripts/dev.sh --tunnel`. The steps below do the same thing by hand.
+
 ### 1. Backend, local
 
 ```bash
