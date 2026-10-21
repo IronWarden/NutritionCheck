@@ -9,5 +9,10 @@ sql_paths = ["./seed.sql"]
 # The prototype signs testers in anonymously so they can start without an account.
 enable_anonymous_sign_ins = true
 
+[auth.rate_limit]
+# Each anonymous account gets its own usage quota, so limit how fast new ones can be made.
+# Per hour per IP address. On a hosted project, set this under Authentication → Rate Limits.
+anonymous_users = 10
+
 [edge_runtime]
 policy = "per_worker"

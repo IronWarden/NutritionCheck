@@ -2,7 +2,7 @@
 // ("analyze"), then stores the user-confirmed items ("save").
 
 import { askJson, imageBlock, PHOTO_MODEL, textBlock } from "../_shared/claude.ts";
-import { HttpError, json, serve } from "../_shared/http.ts";
+import { HttpError, json, serve, useQuota } from "../_shared/http.ts";
 import { type Nutrients, scale } from "../_shared/nutrients.ts";
 import { FOOD_GROUPS } from "../_shared/profile.ts";
 import { searchFood } from "../_shared/usda.ts";
@@ -78,6 +78,8 @@ interface SaveBody {
 }
 
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
+const MAX_TEXT_CHARS = 1000;
+const MAX_SAVE_ITEMS = 30;
 
 serve(async (req, { db, userId }) => {
   const body = (await req.json()) as AnalyzeBody | SaveBody;
@@ -87,6 +89,13 @@ serve(async (req, { db, userId }) => {
     if (body.image && body.image.base64.length * 0.75 > MAX_IMAGE_BYTES) {
       throw new HttpError(413, "Photo is too large. Resize it before uploading.");
     }
+    if (body.image && !["image/jpeg", "image/png"].includes(body.image.media_type)) {
+      throw new HttpError(400, "Send the photo as a JPEG or PNG.");
+    }
+    if ((body.text?.length ?? 0) > MAX_TEXT_CHARS) {
+      throw new HttpError(413, `Keep the description under ${MAX_TEXT_CHARS} characters.`);
+    }
+    await useQuota(userId, "log_meal");
 
     const content = body.image
       ? [
@@ -101,6 +110,7 @@ serve(async (req, { db, userId }) => {
       content,
       schema: SCHEMA,
       effort: "low",
+      maxTokens: 4000,
     });
 
     const items: DraftItem[] = await Promise.all(
@@ -120,6 +130,7 @@ serve(async (req, { db, userId }) => {
 
   if (body.action === "save") {
     if (!body.items?.length) throw new HttpError(400, "Nothing to save.");
+    if (body.items.length > MAX_SAVE_ITEMS) throw new HttpError(400, "Too many items in one meal.");
     for (const item of body.items) {
       if (!(FOOD_GROUPS as readonly string[]).includes(item.food_group)) {
         throw new HttpError(400, `Unknown food group: ${item.food_group}`);

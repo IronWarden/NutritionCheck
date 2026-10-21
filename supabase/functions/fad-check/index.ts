@@ -2,7 +2,7 @@
 // to the claim library (main model), then rates it with fixed rules.
 
 import { askJson, FAST_MODEL, MAIN_MODEL, textBlock } from "../_shared/claude.ts";
-import { HttpError, json, libraryText, loadLibrary, serve } from "../_shared/http.ts";
+import { HttpError, json, libraryText, loadLibrary, serve, useQuota } from "../_shared/http.ts";
 import { type Confidence, WEIGHT } from "../_shared/rules.ts";
 
 const MAX_INPUT_CHARS = 4000;
@@ -73,6 +73,7 @@ serve(async (req, { db, userId }) => {
   const input = text?.trim() ?? "";
   if (!input) throw new HttpError(400, "Paste a claim to check.");
   if (input.length > MAX_INPUT_CHARS) throw new HttpError(413, `Keep it under ${MAX_INPUT_CHARS} characters.`);
+  await useQuota(userId, "fad_check");
 
   const extracted = await askJson<{ claims: string[] }>({
     model: FAST_MODEL,

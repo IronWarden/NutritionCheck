@@ -109,7 +109,18 @@ The Claude and USDA calls are not covered by automated tests.
 
 ## Cost
 
-Each photo log costs about $0.013 on Sonnet 5.5, and a verdict about $0.02. Each call logs token usage to the function logs. To cut costs further:
+Photo and text logging use Haiku 5.5 by default, at well under $0.01 per log (about $0.013 on Sonnet 5.5; set `CLAUDE_PHOTO_MODEL=claude-sonnet-5-5` to compare). A verdict costs about $0.02. Each call logs token usage to the function logs.
 
-- Try `CLAUDE_PHOTO_MODEL=claude-haiku-5-5` for photo logging.
+**Usage limits.** `use_ai_quota` in `supabase/migrations/20261021000000_ai_quotas.sql` records every Claude call and refuses calls past a limit:
+
+| Feature | Per user per hour | Per user per day |
+| --- | --- | --- |
+| Meal analysis | 30 | 100 |
+| Fad check | 10 | 30 |
+| Diet verdict | 5 | 15 |
+
+All users together are capped at `AI_GLOBAL_DAILY_LIMIT` calls per rolling 24 hours (default 2000), and each IP address can create 10 anonymous accounts an hour. Change the per-user limits in `QUOTAS` in `supabase/functions/_shared/http.ts`. Also set a monthly spend limit in the Anthropic Console as a final backstop.
+
+To cut costs further:
+
 - The claim library sits in a cached system prompt, so keep `libraryText()` output stable to keep the cache working.

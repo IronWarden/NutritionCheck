@@ -3,7 +3,16 @@
 // explanation, and any sentence that doesn't cite a selected claim is dropped.
 
 import { askJson, MAIN_MODEL, textBlock } from "../_shared/claude.ts";
-import { json, libraryText, loadLibrary, loadProfile, loadRecentItems, serve, targetsFor } from "../_shared/http.ts";
+import {
+  json,
+  libraryText,
+  loadLibrary,
+  loadProfile,
+  loadRecentItems,
+  serve,
+  targetsFor,
+  useQuota,
+} from "../_shared/http.ts";
 import { buildProfile } from "../_shared/profile.ts";
 import {
   cited,
@@ -91,6 +100,7 @@ serve(async (req, { db, userId }) => {
       strengths: core.strengths.map(finding),
       gaps: core.gaps.map(finding),
     };
+    await useQuota(userId, "diet_verdict");
     explained = await askJson({
       model: MAIN_MODEL,
       system: `${SYSTEM_RULES}\n${libraryText(claims)}`,

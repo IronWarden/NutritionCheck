@@ -47,6 +47,36 @@ export function serve(handler: (req: Request, ctx: { db: SupabaseClient; userId:
   });
 }
 
+// Per-user limits on the calls that cost money. Generous for real use, low enough that
+// a scripted client can't run up the bill.
+const QUOTAS = {
+  log_meal: { perHour: 30, perDay: 100 },
+  fad_check: { perHour: 10, perDay: 30 },
+  diet_verdict: { perHour: 5, perDay: 15 },
+} as const;
+
+// Cap on Claude calls across all users per rolling 24 hours, in case many accounts are
+// created to get around the per-user limits.
+const GLOBAL_PER_DAY = Number(Deno.env.get("AI_GLOBAL_DAILY_LIMIT") ?? 2000);
+
+const admin = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+
+// Call before each Claude request. Throws 429 or 503 when a limit is hit.
+export async function useQuota(userId: string, kind: keyof typeof QUOTAS): Promise<void> {
+  const { perHour, perDay } = QUOTAS[kind];
+  const { data, error } = await admin.rpc("use_ai_quota", {
+    p_user: userId,
+    p_kind: kind,
+    p_per_hour: perHour,
+    p_per_day: perDay,
+    p_global_per_day: GLOBAL_PER_DAY,
+  });
+  if (error) throw error;
+  if (data === "hour") throw new HttpError(429, "You've hit the hourly limit for this. Try again later.");
+  if (data === "day") throw new HttpError(429, "You've hit today's limit for this. Try again tomorrow.");
+  if (data === "global") throw new HttpError(503, "The app is busy right now. Try again later.");
+}
+
 export interface Profile {
   birth_year: number | null;
   sex: Sex | null;
