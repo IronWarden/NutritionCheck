@@ -29,7 +29,8 @@
           "photosPermission": "Choose a photo of your meal to log it.",
           "cameraPermission": "Take a photo of your meal to log it."
         }
-      ]
+      ],
+      "expo-status-bar"
     ],
     "scheme": "dietevidence"
   }

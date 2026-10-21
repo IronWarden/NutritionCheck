@@ -18,14 +18,15 @@ function Gate() {
   }
 
   // Route guards send new users to onboarding and keep onboarded users out of it.
+  // A failed guard removes its screens, so the stack falls back to the first allowed one.
   return (
     <Stack screenOptions={{ headerTintColor: colors.accent, contentStyle: { backgroundColor: colors.background } }}>
-      <Stack.Protected guard={profile.onboarded} redirectTo="/onboarding">
+      <Stack.Protected guard={profile.onboarded}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="confirm" options={{ title: "Check your meal", presentation: "modal" }} />
         <Stack.Screen name="claim/[id]" options={{ title: "Evidence" }} />
       </Stack.Protected>
-      <Stack.Protected guard={!profile.onboarded} redirectTo="/">
+      <Stack.Protected guard={!profile.onboarded}>
         <Stack.Screen name="onboarding" options={{ title: "Welcome", headerBackVisible: false }} />
       </Stack.Protected>
     </Stack>
